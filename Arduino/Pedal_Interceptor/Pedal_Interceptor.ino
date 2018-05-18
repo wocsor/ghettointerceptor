@@ -48,6 +48,8 @@ void setup() {
     Serial.println("Init CAN BUS Shield again");
     //goto INIT;
   }
+  pot0.setWiper(82);
+  pot1.setWiper(40);
 
 }
 
@@ -70,7 +72,7 @@ void loop() {
     accel_cmd = accel_cmd << 8;
     accel_cmd = accel_cmd + buf[2];
 
-    if (((pedal0 + pedal1) / 2)) < 68) { //68 is an example. use the real default values from the pedal + a threshold.
+    if (((pedal0 + pedal1) / 2) < 68) { //68 is an example. use the real default values from the pedal + a threshold.
 
       if (accel_cmd > 0) //accel_cmd > 0 means OP wants the car to accelerate. we set the pots accordingly
       {
@@ -102,8 +104,6 @@ void loop() {
   else { //no CAN signal
     pot0.setWiper(pedal0);
     pot1.setWiper(pedal1);
-    }
+    Serial.println("no can!");
   }
-
-
 }
