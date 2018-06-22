@@ -54,8 +54,6 @@ void loop() {
 
   pedal0 = analogRead(A0) / 4; //divide by 4 to get 256 steps from a 10 bit ADC (lower the res)
   pedal1 = analogRead(A1) / 4;
-  pot0.setWiper(pedal0); //always send gas pedal position to ECU
-  pot1.setWiper(pedal1);
 
   //read CAN bus for accel_cmd
   CAN.readMsgBuf(&len, buf);    //read data,  len: data length, buf: data buffer
